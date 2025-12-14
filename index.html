@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Undangan Pernikahan Islami</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com">  // COUNTDOWN
+  const targetDate = new Date('2025-04-20T08:00:00').getTime();
+  setInterval(() => {
+    const now = new Date().getTime();
+    const diff = targetDate - now;
+    if (diff > 0) {
+      days.innerText = Math.floor(diff / (1000*60*60*24));
+      hours.innerText = Math.floor((diff / (1000*60*60)) % 24);
+      minutes.innerText = Math.floor((diff / (1000*60)) % 60);
+      seconds.innerText = Math.floor((diff / 1000) % 60);
+    }
+  }, 1000);
+
+  // COPY REKENING
+  function copyRek(){
+    navigator.clipboard.writeText(document.getElementById('rek').innerText);
+    alert('Nomor rekening disalin');
+  }
+</script>
+
+  <style>
+    body { font-family: 'Poppins', sans-serif; }
+    .font-nama { font-family: 'Playfair Display', serif; }
+    .font-arab { font-family: 'Amiri', serif; }
+    .arabic { font-family: 'Amiri', serif; }
+
+    /* ORNAMEN ISLAMI HALUS */
+    .orn-line {
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #6ee7b7, transparent);
+      margin: 1rem auto;
+    }
+    .orn-dot {
+      width: 6px;
+      height: 6px;
+      background: #6ee7b7;
+      border-radius: 9999px;
+      margin: 0 auto;
+      box-shadow: 0 0 8px rgba(110,231,183,0.8);
+    }
+  </style>
+</head>
+<body class="bg-[#0e1f1a] text-[#f5f5f5]">
+
+<!-- AUDIO -->
+<audio id="musik" loop>
+  <source src="music.mp3" type="audio/mpeg" />
+</audio>
+
+<!-- TOGGLE MUSIK -->
+<button id="musicBtn" onclick="toggleMusic()" class="fixed bottom-5 right-5 z-50 bg-emerald-700 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg">
+  🔊
+</button>
+
+<!-- LANDING -->
+<section id="landing" class="min-h-screen flex items-center justify-center px-6 relative overflow-hidden">
+  <!-- ORNAMEN HALUS -->
+  <div class="absolute inset-0 bg-gradient-to-b from-emerald-900/40 via-transparent to-emerald-900/40"></div>
+
+  <div class="max-w-md text-center relative z-10">
+    <p class="tracking-widest text-sm mb-4 text-emerald-200">UNDANGAN PERNIKAHAN</p>
+    <p class="font-arab text-2xl mb-4">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</p>
+    <h1 class="font-nama text-4xl font-semibold mb-4">Putra & Putri</h1>
+    <div class="orn-dot"></div>
+    <div class="orn-line"></div>
+    <p class="mb-8 text-emerald-100">Dengan memohon rahmat dan ridho Allah SWT,<br/>kami mengundang Bapak/Ibu/Saudara/i</p>
+    <button onclick="bukaUndangan()" class="px-8 py-3 bg-emerald-700 rounded-full">Buka Undangan</button>
+  </div>
+</section>
+
+<!-- UNDANGAN -->
+<section id="undangan" class="hidden">
+
+  <!-- HERO -->
+  <section class="min-h-screen flex items-center justify-center px-6">
+    <div class="text-center max-w-xl">
+      <p class="font-arab text-3xl mb-4">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</p>
+      <h2 class="font-nama text-5xl font-semibold mb-2">Putra & Putri</h2>
+      <div class="orn-dot"></div>
+      <div class="orn-line"></div>
+      <p class="italic text-emerald-200">Sakinah Mawaddah Warahmah</p>
+    </div>
+  </section>
+
+  <!-- AYAT -->
+  <section class="py-20 px-6 bg-[#102922]">
+    <div class="max-w-3xl mx-auto text-center">
+      <div class="orn-dot mb-4"></div>
+      <div class="orn-line mb-6"></div>
+      <p class="arabic text-3xl mb-6">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُمْ مِنْ أَنْفُسِكُمْ أَزْوَاجًا</p>
+      <p class="text-emerald-100">"Dan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri agar kamu merasa tenteram kepadanya"</p>
+      <p class="mt-2 text-sm text-emerald-300">QS. Ar-Rum : 21</p>
+    </div>
+  </section>
+
+  <!-- MEMPELAI -->
+  <section class="py-20 px-6">
+    <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-10 text-center">
+      <div>
+        <img src="foto1.jpg" class="mx-auto rounded-xl mb-4" />
+        <h3 class="text-xl font-medium">Putra</h3>
+        <p class="text-emerald-200">Putra Bapak Lorem & Ibu Ipsum</p>
+      </div>
+      <div>
+        <img src="foto2.jpg" class="mx-auto rounded-xl mb-4" />
+        <h3 class="text-xl font-medium">Putri</h3>
+        <p class="text-emerald-200">Putri Bapak Lorem & Ibu Ipsum</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACARA -->
+  <section class="py-20 px-6 text-center bg-[#102922]">
+    <h3 class="text-3xl font-medium mb-4">Detail Acara</h3>
+    <div class="orn-dot"></div><div class="orn-line"></div>
+    <p class="mt-4">Akad & Resepsi</p>
+    <p class="my-2">Minggu, 20 April 2025</p>
+    <p class="mb-6">Gedung Serbaguna</p>
+
+    <!-- COUNTDOWN -->
+    <div id="countdown" class="flex justify-center gap-4 text-center text-sm mt-6">
+      <div><span id="days" class="block text-2xl font-semibold">0</span>Hari</div>
+      <div><span id="hours" class="block text-2xl font-semibold">0</span>Jam</div>
+      <div><span id="minutes" class="block text-2xl font-semibold">0</span>Menit</div>
+      <div><span id="seconds" class="block text-2xl font-semibold">0</span>Detik</div>
+    </div>
+
+    <!-- ADD TO CALENDAR -->
+    <a href="#" class="inline-block mt-6 px-6 py-2 bg-emerald-700 rounded-full">+ Simpan ke Kalender</a>
+  </section>
+
+  <!-- LOKASI & MAP -->
+  <section class="py-20 px-6 text-center">
+    <h3 class="text-3xl font-medium mb-4">Lokasi Acara</h3>
+    <div class="orn-dot"></div><div class="orn-line"></div>
+    <p class="mt-4 text-emerald-200">Scan QR atau buka Google Maps</p>
+    <img src="fotoqr.png" class="mx-auto w-48 h-48 my-6" />
+    <a href="https://maps.google.com" target="_blank" class="text-emerald-300 underline">Buka di Google Maps</a>
+  </section>
+
+  <!-- GALERI -->
+  <section class="py-20 px-6 bg-[#102922]">
+    <h3 class="text-center text-3xl font-medium mb-8">Galeri</h3>
+    <div class="orn-dot"></div><div class="orn-line mb-8"></div>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-5xl mx-auto">
+      <img src="foto1.jpg" class="rounded-xl" />
+      <img src="foto2.jpg" class="rounded-xl" />
+      <img src="foto3.jpg" class="rounded-xl" />
+      <img src="foto3.jpg" class="rounded-xl" />
+      <img src="foto4.jpg" class="rounded-xl" />
+      <img src="foto5.jpg" class="rounded-xl" />
+    </div>
+  </section>
+
+  <!-- RSVP -->
+  <section class="py-20 px-6 text-center">
+    <h3 class="text-3xl font-medium mb-4">Konfirmasi Kehadiran</h3>
+    <div class="orn-dot"></div><div class="orn-line"></div>
+    <div class="max-w-md mx-auto mt-6">
+      <input placeholder="Nama" class="w-full p-3 rounded mb-3 text-black" />
+      <select class="w-full p-3 rounded mb-3 text-black">
+        <option>Hadir</option><option>Tidak Hadir</option>
+      </select>
+      <button class="w-full py-3 bg-emerald-700 rounded">Kirim RSVP</button>
+    </div>
+  </section>
+
+  <!-- AMPL0P DIGITAL -->
+  <section class="py-20 px-6 bg-[#102922] text-center">
+    <h3 class="text-3xl font-medium mb-4">Amplop Digital</h3>
+    <div class="orn-dot"></div><div class="orn-line"></div>
+    <p class="mt-4 text-emerald-200">Doa restu Anda merupakan karunia terindah</p>
+    <div class="mt-6">
+      <p>Bank BCA</p>
+      <p id="rek" class="font-semibold">1234567890</p>
+      <button onclick="copyRek()" class="mt-3 px-6 py-2 bg-emerald-700 rounded">Salin Rekening</button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-10 text-center text-sm text-emerald-300">
+    © 2025 Undangan Islami Elegan
+  </footer>
+
+</section>
+
+<script>
+  const musik = document.getElementById('musik');
+  const btn = document.getElementById('musicBtn');
+  let playing = false;
+
+  function bukaUndangan() {
+    document.getElementById('landing').classList.add('hidden');
+    document.getElementById('undangan').classList.remove('hidden');
+    musik.play();
+    playing = true;
+    btn.innerHTML = '🔊';
+  }
+
+  function toggleMusic() {
+    if (!playing) {
+      musik.play();
+      btn.innerHTML = '🔊';
+    } else {
+      musik.pause();
+      btn.innerHTML = '🔇';
+    }
+    playing = !playing;
+  }
+</script>
+
+</body>
+</html>
