@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Undangan Pernikahan Islami</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Scheherazade+New:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Poppins,sans-serif;background:#fafafa;color:#333;user-select:none}
+section{padding:70px 20px}
+.center{text-align:center}
+h2{font-size:28px;margin-bottom:15px}
+:root{--gold:#C9A24D}
+
+/* ===== ANIMASI ===== */
+.fade{opacity:0;transform:translateY(20px);transition:1s}
+.fade.show{opacity:1;transform:none}
+
+/* ===== OPENING ===== */
+.opening{
+  position:fixed;inset:0;
+  background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+  url("foto1.jpg") center/cover;
+  display:flex;align-items:center;justify-content:center;
+  z-index:3000
+}
+.opening.opened{opacity:0;visibility:hidden;transition:1s}
+
+.opening-box{
+  background:#fff;padding:40px 30px;border-radius:30px;
+  max-width:360px;text-align:center;
+  box-shadow:0 25px 60px rgba(0,0,0,.35);
+  position:relative
+}
+.orn{
+  position:absolute;top:15px;width:40px;height:40px;
+  fill:var(--gold);opacity:.5
+}
+.orn.left{left:20px}
+.orn.right{right:20px;transform:scaleX(-1)}
+
+.bismillah{
+  font-family:'Scheherazade New',serif;
+  font-size:22px;margin-bottom:8px
+}
+.opening-box h1{
+  font-family:'Scheherazade New',serif;
+  font-size:34px;margin:8px 0
+}
+.opening-box button{
+  margin-top:20px;padding:14px 32px;
+  border:none;border-radius:30px;
+  background:var(--gold);color:#fff;
+  font-size:15px;cursor:pointer
+}
+
+/* ===== COVER ===== */
+.cover{
+  min-height:100vh;
+  background: url("foto5.jpg") center/cover no-repeat;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  text-align:center;
+}
+.cover::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: rgba(0,0,0,0.5); /* overlay agar tulisan putih kontras */
+}
+.cover h1{
+  position:relative; /* agar berada di atas overlay */
+  font-family:'Scheherazade New',serif;
+  font-size:72px; /* ukuran besar */
+  color:#fff; /* putih */
+  z-index:1;
+}
+
+/* ===== MEMPELAI ===== */
+.pengantin{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:30px;max-width:900px;margin:auto
+}
+.card{
+  background:#fff;padding:30px;border-radius:26px;
+  box-shadow:0 12px 30px rgba(0,0,0,.12)
+}
+.photo{
+  width:140px;height:140px;margin:0 auto 15px;
+  border-radius:50%;overflow:hidden;
+  border:4px solid var(--gold)
+}
+.photo img{width:100%;height:100%;object-fit:cover}
+
+/* ===== AYAT ===== */
+.ayat{
+  font-family:'Scheherazade New',serif;
+  font-size:28px;color:var(--gold)
+}
+.arti{
+  font-size:14px;color:#555;
+  max-width:700px;margin:15px auto
+}
+
+/* ===== COUNTDOWN ===== */
+.countdown{
+  display:flex;justify-content:center;
+  gap:15px;margin-top:25px
+}
+.time{
+  background:#fff;padding:15px 18px;
+  border-radius:16px;
+  box-shadow:0 10px 25px rgba(0,0,0,.12)
+}
+.time h3{font-size:22px;color:var(--gold)}
+.time span{font-size:12px}
+
+/* ===== LOKASI ===== */
+.lokasi-header{
+  display:flex;flex-direction:column;
+  align-items:center;gap:10px
+}
+.icon-masjid{
+  width:60px;height:60px;fill:var(--gold)
+}
+.maps-box{
+  max-width:900px;margin:20px auto;
+  border-radius:24px;overflow:hidden;
+  box-shadow:0 15px 40px rgba(0,0,0,.15)
+}
+.maps-box iframe{width:100%;height:350px;border:0}
+.btn-maps{
+  display:inline-block;margin-top:20px;
+  padding:14px 26px;background:var(--gold);
+  color:#fff;border-radius:30px;
+  text-decoration:none
+}
+
+/* ===== RSVP ===== */
+.rsvp-box{
+  max-width:500px;margin:auto;
+  background:#fff;padding:30px;
+  border-radius:24px;
+  box-shadow:0 12px 30px rgba(0,0,0,.12)
+}
+.rsvp-box input{
+  width:100%;padding:14px;
+  border-radius:14px;
+  border:1px solid #ddd;
+  margin-bottom:15px
+}
+.rsvp-box button{
+  width:100%;padding:14px;
+  border:none;border-radius:30px;
+  background:var(--gold);color:#fff
+}
+
+/* ===== GALERI ===== */
+.galeri{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:15px;max-width:900px;margin:auto
+}
+.galeri img{
+  width:100%;border-radius:18px;
+  cursor:pointer;transition:.3s
+}
+.galeri img:hover{transform:scale(1.05)}
+
+/* LIGHTBOX */
+#lightbox{
+  position:fixed;inset:0;
+  background:rgba(0,0,0,.85);
+  display:none;align-items:center;
+  justify-content:center;z-index:4000
+}
+#lightbox img{
+  max-width:90%;max-height:90%;
+  border-radius:20px
+}
+
+/* ===== MUSIC ===== */
+#musicBtn{
+  position:fixed;bottom:25px;right:25px;
+  width:52px;height:52px;border:none;
+  border-radius:50%;background:var(--gold);
+  color:#fff;font-size:20px;z-index:999
+}
+
+/* ===== WATERMARK ===== */
+#watermark{
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:32px;
+  color:rgba(0,0,0,.2);
+  pointer-events:none;
+  text-align:center;
+  z-index:5000;
+  white-space:pre-line;
+}
+
+/* FOOTER */
+footer{text-align:center;font-size:12px;color:#aaa;padding:30px}
+img{pointer-events:none}
+</style>
+</head>
+<body>
+
+<!-- OPENING -->
+<div id="opening" class="opening">
+  <div class="opening-box">
+    <svg class="orn left" viewBox="0 0 64 64"><path d="M32 2l8 12h14l-9 9 5 15-13-8-13 8 5-15-9-9h14z"/></svg>
+    <svg class="orn right" viewBox="0 0 64 64"><path d="M32 2l8 12h14l-9 9 5 15-13-8-13 8 5-15-9-9h14z"/></svg>
+
+    <p class="bismillah">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</p>
+    <p>Undangan Pernikahan</p>
+    <h1>Ahmad & Aisyah</h1>
+    <p>Sabtu, 30 Desember 2025<br>
+      Kepada Yth.<br>
+      <strong id="guest">Bapak / Ibu / Saudara/i</strong>
+    </p>
+    <button onclick="buka()">📩 Buka Undangan</button>
+  </div>
+</div>
+
+<!-- COVER -->
+<section class="cover center">
+  <h1>Ahmad & Aisyah</h1>
+</section>
+
+<!-- MEMPELAI -->
+<section class="center fade">
+  <h2>Mempelai</h2>
+  <div class="pengantin">
+    <div class="card">
+      <div class="photo"><img src="foto1.jpg"></div>
+      <h3>Ahmad</h3>
+      <p>Putra Bpk. ... & Ibu ...</p>
+    </div>
+    <div class="card">
+      <div class="photo"><img src="foto2.jpg"></div>
+      <h3>Aisyah</h3>
+      <p>Putri Bpk. ... & Ibu ...</p>
+    </div>
+  </div>
+</section>
+
+<!-- AYAT -->
+<section class="center fade">
+  <div class="ayat">
+    وَمِنْ ءَايَٰتِهِۦٓ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَٰجًۭا
+  </div>
+  <div class="arti">
+    “Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan pasangan hidup
+    agar kamu merasa tenteram.” (QS. Ar-Rum: 21)
+  </div>
+</section>
+
+<!-- COUNTDOWN -->
+<section class="center fade">
+  <h2>Menuju Hari Bahagia</h2>
+  <div class="countdown">
+    <div class="time"><h3 id="d">0</h3><span>Hari</span></div>
+    <div class="time"><h3 id="h">0</h3><span>Jam</span></div>
+    <div class="time"><h3 id="m">0</h3><span>Menit</span></div>
+    <div class="time"><h3 id="s">0</h3><span>Detik</span></div>
+  </div>
+</section>
+
+<!-- LOKASI -->
+<section class="center fade">
+  <div class="lokasi-header">
+    <svg class="icon-masjid" viewBox="0 0 64 64">
+      <path d="M20 36h24v24H20z"/>
+      <path d="M32 2l6 10h12l-8 8 4 12-10-6-10 6 4-12-8-8h12z"/>
+    </svg>
+    <h2>Lokasi Acara</h2>
+  </div>
+  <p>Gedung Serbaguna Al-Hikmah<br>Jl. Contoh No.123</p>
+  <div class="maps-box">
+    <iframe src="https://www.google.com/maps?q=-6.200000,106.816666&output=embed"></iframe>
+  </div>
+  <a class="btn-maps" target="_blank" href="https://maps.google.com/?q=-6.200000,106.816666">📍 Buka Google Maps</a>
+</section>
+
+<!-- RSVP -->
+<section class="center fade">
+  <h2>Konfirmasi Kehadiran</h2>
+  <div class="rsvp-box">
+    <input id="nama" placeholder="Nama Anda">
+    <button onclick="rsvp()">📨 Kirim RSVP</button>
+  </div>
+</section>
+
+<!-- GALERI -->
+<section class="center fade">
+  <h2>Galeri</h2>
+  <div class="galeri">
+    <img src="foto5.jpg" onclick="openImg(this)">
+    <img src="foto2.jpg" onclick="openImg(this)">
+    <img src="foto4.jpg" onclick="openImg(this)">
+    <img src="foto3.jpg" onclick="openImg(this)">
+  </div>
+</section>
+
+<div id="lightbox" onclick="this.style.display='none'">
+  <img id="lightbox-img">
+</div>
+
+<!-- WATERMARK -->
+<div id="watermark">DEMO UNDANGAN DIGITAL
+© Halmi Invitation</div>
+
+<audio id="music" loop>
+  <source src="music.mp3">
+</audio>
+<button id="musicBtn">🔊</button>
+
+<footer>© 2025 Undangan Digital Islami</footer>
+
+<script>
+/* Ambil parameter URL */
+const p = new URLSearchParams(location.search);
+const g = p.get("to");
+if(g) guest.innerText = g;
+
+/* Kontrol watermark */
+const watermark = document.getElementById("watermark");
+const demoMode = p.get("watermark");
+if(demoMode === "true"){
+  watermark.style.display = "flex";
+}else{
+  watermark.style.display = "none";
+}
+
+/* Opening */
+document.body.style.overflow="hidden";
+function buka(){
+  opening.classList.add("opened");
+  setTimeout(()=>opening.remove(),1000);
+  document.body.style.overflow="auto";
+  music.play();
+}
+
+/* Fade */
+const fades = document.querySelectorAll('.fade');
+window.addEventListener('scroll',()=>{
+  fades.forEach(el=>{
+    if(el.getBoundingClientRect().top<innerHeight-50){
+      el.classList.add('show');
+    }
+  })
+});
+
+/* Countdown */
+const target = new Date("2025-12-30 08:00").getTime();
+setInterval(()=>{
+  let t = target - new Date().getTime();
+  if(t<0) return;
+  d.innerText = Math.floor(t/(1000*60*60*24));
+  h.innerText = Math.floor(t/(1000*60*60)%24);
+  m.innerText = Math.floor(t/(1000*60)%60);
+  s.innerText = Math.floor(t/1000%60);
+},1000);
+
+/* RSVP */
+function rsvp(){
+  if(!nama.value) return alert("Isi nama dulu");
+  location.href = `https://wa.me/628xxxxxxxxxx?text=Assalamu'alaikum,%20saya%20${nama.value}%20akan%20hadir`;
+}
+
+/* Lightbox */
+function openImg(el){
+  lightbox.style.display="flex";
+  document.getElementById("lightbox-img").src = el.src;
+}
+
+/* Music */
+musicBtn.onclick = ()=>{
+  music.paused ? (music.play(), musicBtn.textContent="🔊") : (music.pause(), musicBtn.textContent="🔇");
+};
+
+/* Proteksi basic */
+document.addEventListener("contextmenu", e => e.preventDefault());
+document.addEventListener("keydown", e=>{
+  if(e.keyCode===123||e.ctrlKey) e.preventDefault();
+});
+</script>
+
+</body>
+</html>
